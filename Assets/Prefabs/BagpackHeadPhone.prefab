@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1c9f418c6065141bde2ec58c65eca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BagController
+  data: {fileID: 11400000, guid: 1960ab93e4041bb42b5a3e1961d8605a, type: 2}
 --- !u!1 &3349224377088667071
 GameObject:
   m_ObjectHideFlags: 0
