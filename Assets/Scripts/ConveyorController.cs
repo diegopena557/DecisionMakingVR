@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 public class ConveyorController : MonoBehaviour
 {
@@ -19,15 +20,34 @@ public class ConveyorController : MonoBehaviour
     [Header("Animacion")]
     [SerializeField] Animator buttonsAnim;
 
+    [Header("Feedback - Correcto")]
+    [SerializeField] private UnityEvent onCorrectDecision;
+
+    [Header("Feedback - Incorrecto")]
+    [SerializeField] private UnityEvent onWrongDecision;
+
     private int currentIndex = 0;
     private GameObject currentBag = null;
     private bool waitingForDecision = false;
     private bool isMoving = false;
 
-    void Start()
+    void Start() => SpawnNextBag();
+
+    // --- Botones ---
+    public void OnContinue()
     {
-        SpawnNextBag();
+        if (!waitingForDecision || isMoving) return;
+        buttonsAnim.SetTrigger("GreenButton");
+        EvaluateDecision(reportPressed: false);
     }
+
+    public void OnReport()
+    {
+        if (!waitingForDecision || isMoving) return;
+        buttonsAnim.SetTrigger("RedButton");
+        EvaluateDecision(reportPressed: true);
+    }
+
 
     private void Update()
     {
@@ -40,11 +60,24 @@ public class ConveyorController : MonoBehaviour
             buttonsAnim.SetBool("CanChoose", false);
         }
     }
-    // --- Llamado por el boton "Continuar" ---
-    public void OnContinue()
+    // --- Evaluacion ---
+    private void EvaluateDecision(bool reportPressed)
     {
-        if (!waitingForDecision || isMoving) return;
-        buttonsAnim.SetTrigger("GreenButton");
+        BagController bag = currentBag.GetComponent<BagController>();
+
+        bool correct = false;
+
+        if (bag != null && bag.data != null)
+        {
+            // Correcto si: reporto y habia peligro, o dejó pasar y no habia peligro
+            correct = (reportPressed == bag.data.hasDangerousItem);
+        }
+
+        if (correct)
+            onCorrectDecision.Invoke();
+        else
+            onWrongDecision.Invoke();
+
         StartCoroutine(ExitAndNext());
     }
 
@@ -62,7 +95,6 @@ public class ConveyorController : MonoBehaviour
         StartCoroutine(MoveToInspect());
     }
 
-    // --- Entra a la zona de inspeccion ---
     private IEnumerator MoveToInspect()
     {
         isMoving = true;
@@ -71,7 +103,6 @@ public class ConveyorController : MonoBehaviour
         waitingForDecision = true;
     }
 
-    // --- Sale y llama a la siguiente ---
     private IEnumerator ExitAndNext()
     {
         waitingForDecision = false;
@@ -87,7 +118,6 @@ public class ConveyorController : MonoBehaviour
         SpawnNextBag();
     }
 
-    // --- Movimiento suave entre dos puntos ---
     private IEnumerator MoveTo(GameObject bag, Vector3 target)
     {
         while (bag != null && Vector3.Distance(bag.transform.position, target) > 0.01f)
