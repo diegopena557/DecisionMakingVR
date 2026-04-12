@@ -1,4 +1,0 @@
-repository "DecisionMakingVR@EafitTeam@cloud"
-  path "/"
-    br "/main"
-    co "/main"
