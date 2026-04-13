@@ -13,9 +13,13 @@ public class ConveyorTutorial : MonoBehaviour
     public Vector3 trayPositionOffset = Vector3.zero;
     public Vector3 trayRotationOffset = Vector3.zero;
 
+    [Header("Movimiento automático")]
+    public float autoSendDelay = 0.5f;
+
     private GameObject currentTray;
     private bool isMoving = false;
     private Quaternion snappedRotation;
+    private Coroutine autoSendCoroutine;
 
     public void PlaceTray(GameObject tray)
     {
@@ -41,6 +45,17 @@ public class ConveyorTutorial : MonoBehaviour
         {
             grab.enabled = false;
         }
+
+        if (autoSendCoroutine != null)
+            StopCoroutine(autoSendCoroutine);
+
+        autoSendCoroutine = StartCoroutine(AutoSendAfterDelay());
+    }
+
+    private IEnumerator AutoSendAfterDelay()
+    {
+        yield return new WaitForSeconds(autoSendDelay);
+        SendTray();
     }
 
     public void SendTray()
