@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+// Coloca este componente en el boton VERDE (dejar pasar)
 public class ConveyorButton : MonoBehaviour
 {
     [SerializeField] private ConveyorController conveyorSystem;
@@ -18,8 +19,6 @@ public class ConveyorButton : MonoBehaviour
         {
             conveyorSystem.OnContinue();
             audioButton.Play();
-
         }
-            
     }
 }

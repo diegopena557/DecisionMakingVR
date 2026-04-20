@@ -7,18 +7,31 @@ public class ConveyorController : MonoBehaviour
 {
     [Header("Maletas (en orden)")]
     [SerializeField] private List<GameObject> bagPrefabs = new List<GameObject>();
-    
+
     [Header("Posiciones clave (en X)")]
-    [SerializeField] private Transform spawnPoint;       // donde aparece la maleta
-    [SerializeField] private Transform inspectPoint;     // donde se detiene
-    [SerializeField] private Transform exitPoint;        // hasta donde llega antes de desaparecer
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform inspectPoint;
+    [SerializeField] private Transform exitPoint;
+    [SerializeField] private Transform rejectPoint;
 
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 1.5f;
-    [SerializeField] private float delayBeforeNext = 0.5f; // pausa antes de que aparezca la siguiente
+    [SerializeField] private float delayBeforeNext = 0.5f;
+
+    [Header("Temporizador de inspeccion")]
+    [SerializeField] private InspectionTimer inspectionTimer;
+    [SerializeField] private float initialInspectTime = 10f;   // segundos para la primera maleta
+    [SerializeField] private float timeReductionPerBag = 0.5f; // reduccion por cada maleta que pasa
+    [SerializeField] private float minimumInspectTime = 3f;    // tiempo minimo posible
+
+    [Header("Fila de pasajeros")]
+    [SerializeField] private PassengerQueue passengerQueue;
 
     [Header("Animacion")]
     [SerializeField] Animator buttonsAnim;
+
+    [Header("Sonido - Rechazo")]
+    [SerializeField] private AudioSource alarmAudio;
 
     [Header("Feedback - Correcto")]
     [SerializeField] private UnityEvent onCorrectDecision;
@@ -32,6 +45,13 @@ public class ConveyorController : MonoBehaviour
     private bool isMoving = false;
 
     void Start() => SpawnNextBag();
+
+    // Calcula el tiempo disponible para esta maleta (se reduce progresivamente)
+    private float GetCurrentInspectTime()
+    {
+        float t = initialInspectTime - (currentIndex - 1) * timeReductionPerBag;
+        return Mathf.Max(t, minimumInspectTime);
+    }
 
     // --- Botones ---
     public void OnContinue()
@@ -48,36 +68,45 @@ public class ConveyorController : MonoBehaviour
         EvaluateDecision(reportPressed: true);
     }
 
-
     private void Update()
     {
-        if (waitingForDecision)
-        {
-            buttonsAnim.SetBool("CanChoose", true);
-        }
-        else
-        {
-            buttonsAnim.SetBool("CanChoose", false);
-        }
+        buttonsAnim.SetBool("CanChoose", waitingForDecision);
     }
+
     // --- Evaluacion ---
     private void EvaluateDecision(bool reportPressed)
     {
-        BagController bag = currentBag.GetComponent<BagController>();
+        if (inspectionTimer != null)
+            inspectionTimer.StopTimer();
 
+        BagController bag = currentBag.GetComponent<BagController>();
         bool correct = false;
 
         if (bag != null && bag.data != null)
-        {
-            // Correcto si: reporto y habia peligro, o dejó pasar y no habia peligro
             correct = (reportPressed == bag.data.hasDangerousItem);
+
+        if (correct) onCorrectDecision.Invoke();
+        else onWrongDecision.Invoke();
+
+        if (reportPressed)
+        {
+            passengerQueue?.RejectCurrentPassenger();
+            StartCoroutine(RejectAndNext());
         }
-
-        if (correct)
-            onCorrectDecision.Invoke();
         else
-            onWrongDecision.Invoke();
+        {
+            passengerQueue?.ApproveCurrentPassenger();
+            StartCoroutine(ExitAndNext());
+        }
+    }
 
+    // Llamado automaticamente por InspectionTimer cuando se agota el tiempo
+    public void OnTimeExpired()
+    {
+        if (!waitingForDecision || isMoving) return;
+        waitingForDecision = false;
+        onWrongDecision.Invoke();
+        passengerQueue?.ApproveCurrentPassenger(); // tiempo agotado = pasa sin decision
         StartCoroutine(ExitAndNext());
     }
 
@@ -101,6 +130,10 @@ public class ConveyorController : MonoBehaviour
         yield return StartCoroutine(MoveTo(currentBag, inspectPoint.position));
         isMoving = false;
         waitingForDecision = true;
+
+        // Iniciar timer con el tiempo calculado para esta maleta
+        if (inspectionTimer != null)
+            inspectionTimer.StartTimer(GetCurrentInspectTime(), OnTimeExpired);
     }
 
     private IEnumerator ExitAndNext()
@@ -109,6 +142,25 @@ public class ConveyorController : MonoBehaviour
         isMoving = true;
 
         yield return StartCoroutine(MoveTo(currentBag, exitPoint.position));
+
+        Destroy(currentBag);
+        currentBag = null;
+        isMoving = false;
+
+        yield return new WaitForSeconds(delayBeforeNext);
+        SpawnNextBag();
+    }
+
+    private IEnumerator RejectAndNext()
+    {
+        waitingForDecision = false;
+        isMoving = true;
+
+        if (alarmAudio != null)
+            alarmAudio.Play();
+
+        Transform target = rejectPoint != null ? rejectPoint : spawnPoint;
+        yield return StartCoroutine(MoveTo(currentBag, target.position));
 
         Destroy(currentBag);
         currentBag = null;
