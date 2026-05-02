@@ -6,7 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class ConveyorButton : MonoBehaviour
 {
     [SerializeField] private ConveyorController conveyorSystem;
-    AudioSource audioButton;
+    [SerializeField] private TutorialDecisionReporter tutorialReporter;
+
+    private AudioSource audioButton;
 
     private void Awake()
     {
@@ -15,10 +17,16 @@ public class ConveyorButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
-        {
+        if (!other.CompareTag("Hand"))
+            return;
+
+        if (conveyorSystem != null)
             conveyorSystem.OnContinue();
+
+        if (tutorialReporter != null)
+            tutorialReporter.ReportarAccionTutorial();
+
+        if (audioButton != null)
             audioButton.Play();
-        }
     }
 }

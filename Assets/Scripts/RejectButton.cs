@@ -4,7 +4,9 @@ using UnityEngine;
 public class RejectButton : MonoBehaviour
 {
     [SerializeField] private ConveyorController conveyorSystem;
-    AudioSource audioButton;
+    [SerializeField] private TutorialDecisionReporter tutorialReporter;
+
+    private AudioSource audioButton;
 
     private void Awake()
     {
@@ -13,11 +15,16 @@ public class RejectButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
-        {
+        if (!other.CompareTag("Hand"))
+            return;
+
+        if (conveyorSystem != null)
             conveyorSystem.OnReport();
-            if (audioButton != null)
-                audioButton.Play();
-        }
+
+        if (tutorialReporter != null)
+            tutorialReporter.ReportarAccionTutorial();
+
+        if (audioButton != null)
+            audioButton.Play();
     }
 }
