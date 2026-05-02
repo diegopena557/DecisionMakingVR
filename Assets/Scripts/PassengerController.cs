@@ -2,39 +2,44 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Controla el movimiento y estado de un pasajero individual.
-/// Se instancia desde PassengerQueue.
-/// </summary>
+
 public class PassengerController : MonoBehaviour
 {
     [Header("Movimiento")]
     [SerializeField] public float moveSpeed = 1.4f;
 
+    [Header("Animacion")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private string walkParam = "isWalking"; // nombre del Bool en el Animator
+
     [Header("Sonido - Rechazo")]
-    [SerializeField] private AudioSource rejectAudio; // sonido cuando es expulsado
+    [SerializeField] private AudioSource rejectAudio;
 
     // Estados posibles del pasajero
     public enum PassengerState { InQueue, MovingToScanner, AtScanner, Approved, Rejected }
     public PassengerState State { get; private set; } = PassengerState.InQueue;
 
-    // Accion que notifica a la cola cuando este pasajero termino su ciclo
     public Action onDone;
 
     private Coroutine moveCoroutine;
 
-    // -------------------------------------------------------
-    // API publica llamada desde PassengerQueue
-    // -------------------------------------------------------
+    private void Awake()
+    {
+        // Buscar Animator automaticamente si no fue asignado en el Inspector
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
 
-    /// Mueve el pasajero a la posicion de fila asignada (sin notificar al terminar)
+        SetWalking(false); // empieza en Idle
+    }
+
+    
+
     public void MoveToQueueSlot(Vector3 position)
     {
         StopCurrentMove();
-        moveCoroutine = StartCoroutine(MoveTo(position, null));
+        moveCoroutine = StartCoroutine(MoveTo(position, () => SetWalking(false)));
     }
 
-    /// Manda al pasajero al escaner; al llegar avisa con onArrived
     public void MoveToScanner(Vector3 scannerPos, Action onArrived)
     {
         State = PassengerState.MovingToScanner;
@@ -42,11 +47,11 @@ public class PassengerController : MonoBehaviour
         moveCoroutine = StartCoroutine(MoveTo(scannerPos, () =>
         {
             State = PassengerState.AtScanner;
+            SetWalking(false); // idle mientras espera la decision
             onArrived?.Invoke();
         }));
     }
 
-    /// Pasajero aprobado: camina al exitPoint y se destruye
     public void Approve(Vector3 exitPos)
     {
         State = PassengerState.Approved;
@@ -58,7 +63,6 @@ public class PassengerController : MonoBehaviour
         }));
     }
 
-    /// Pasajero rechazado: suena el audio, camina al rejectExit y se destruye
     public void Reject(Vector3 rejectExitPos)
     {
         State = PassengerState.Rejected;
@@ -74,9 +78,19 @@ public class PassengerController : MonoBehaviour
         }));
     }
 
-    // -------------------------------------------------------
-    // Internos
-    // -------------------------------------------------------
+    
+    // Animacion
+    
+
+    private void SetWalking(bool walking)
+    {
+        if (animator == null) return;
+        animator.SetBool(walkParam, walking);
+    }
+
+    
+    // Movimiento
+   
 
     private void StopCurrentMove()
     {
@@ -89,23 +103,38 @@ public class PassengerController : MonoBehaviour
 
     private IEnumerator MoveTo(Vector3 target, Action onReached)
     {
-        // Rotar hacia el destino al arrancar
-        Vector3 dir = (target - transform.position);
+        Vector3 dir = target - transform.position;
         dir.y = 0;
-        if (dir.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(dir);
 
-        while (Vector3.Distance(transform.position, target) > 0.05f)
+        // Solo moverse si hay distancia real
+        if (dir.sqrMagnitude > 0.001f)
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                target,
-                moveSpeed * Time.deltaTime
-            );
-            yield return null;
+            transform.rotation = Quaternion.LookRotation(dir);
+            SetWalking(true);
+
+            while (Vector3.Distance(transform.position, target) > 0.05f)
+            {
+                // Actualizar rotacion suavemente mientras camina
+                Vector3 currentDir = (target - transform.position);
+                currentDir.y = 0;
+                if (currentDir.sqrMagnitude > 0.001f)
+                    transform.rotation = Quaternion.Slerp(
+                        transform.rotation,
+                        Quaternion.LookRotation(currentDir),
+                        10f * Time.deltaTime
+                    );
+
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    target,
+                    moveSpeed * Time.deltaTime
+                );
+                yield return null;
+            }
         }
 
         transform.position = target;
+        SetWalking(false);
         onReached?.Invoke();
     }
 }

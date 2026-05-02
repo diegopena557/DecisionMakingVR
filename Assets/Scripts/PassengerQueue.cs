@@ -2,27 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Gestiona la fila de pasajeros:
-///   - Instancia pasajeros al inicio llenando los slots visibles
-///   - Cuando el primero avanza al escaner, los demas avanzan un slot
-///   - Cuando termina el ciclo del pasajero activo, instancia uno nuevo al final
-///
-/// SETUP EN UNITY:
-///   1. Crea un GameObject vacio "PassengerQueue" y agrega este script.
-///   2. Crea Transforms vacios en la escena para cada slot de la fila
-///      (ej: QueueSlot_0 mas cerca del escaner, QueueSlot_1, QueueSlot_2...).
-///      Arrastralos al array queueSlots en el Inspector.
-///   3. Asigna el prefab del pasajero (con PassengerController).
-///   4. Asigna scannerPoint, passengerExitPoint, passengerRejectPoint.
-///   5. Llama a ApproveCurrentPassenger() o RejectCurrentPassenger()
-///      desde ConveyorController segun la decision tomada.
-/// </summary>
 public class PassengerQueue : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] private List<GameObject> passengerPrefabs = new List<GameObject>();
     [SerializeField] private bool randomizeOrder = true;
+    [SerializeField] private int totalPassengers = 10; // total exacto de pasajeros en toda la sesion
 
     [Header("Slots de la fila (ordenados: 0 = frente, ultimo = atras)")]
     [SerializeField] private Transform[] queueSlots;
@@ -44,6 +29,9 @@ public class PassengerQueue : MonoBehaviour
 
     // Pasajero que esta en el escaner ahora mismo
     private PassengerController activePassenger;
+
+    // Cuantos pasajeros han sido spawneados en total
+    private int spawnedCount = 0;
 
     // -------------------------------------------------------
     void Start()
@@ -91,11 +79,13 @@ public class PassengerQueue : MonoBehaviour
         if (randomizeOrder)
             Shuffle(list);
 
-        // Repetir la lista ciclicamente para que nunca se acabe
-        // (duplicamos varias veces para tener stock suficiente)
-        for (int i = 0; i < 10; i++)
-            foreach (var p in list)
-                prefabPool.Enqueue(p);
+        // Llenar el pool hasta exactamente totalPassengers, ciclando los prefabs si hay menos
+        int added = 0;
+        while (added < totalPassengers)
+        {
+            prefabPool.Enqueue(list[added % list.Count]);
+            added++;
+        }
     }
 
     private void FillQueue()
@@ -106,7 +96,7 @@ public class PassengerQueue : MonoBehaviour
 
     private void SpawnAtSlot(int slotIndex)
     {
-        if (prefabPool.Count == 0) return;
+        if (prefabPool.Count == 0) return;  // no quedan mas pasajeros
         if (slotIndex < 0 || slotIndex >= queueSlots.Length) return;
 
         GameObject prefab = prefabPool.Dequeue();
@@ -117,23 +107,23 @@ public class PassengerQueue : MonoBehaviour
 
         pc.moveSpeed = passengerMoveSpeed;
         slotOccupants[slotIndex] = pc;
+        spawnedCount++;
     }
 
-    /// El primero de la fila avanza al punto del escaner
     private void AdvanceFirstToScanner()
     {
         if (slotOccupants.Length == 0) return;
 
         PassengerController first = slotOccupants[0];
-        if (first == null) return;
+        if (first == null)
+        {
+            Debug.Log("Todos los pasajeros han sido procesados.");
+            return;
+        }
 
-        // Sacar del slot
         slotOccupants[0] = null;
-
         activePassenger = first;
         first.MoveToScanner(scannerPoint.position, null);
-
-        // El resto de la fila avanza un slot
         StartCoroutine(AdvanceQueue());
     }
 
@@ -151,9 +141,10 @@ public class PassengerQueue : MonoBehaviour
             }
         }
 
-        // Spawnar nuevo pasajero al final de la fila
+        // Spawnar nuevo pasajero al final solo si quedan en el pool
         int lastSlot = slotOccupants.Length - 1;
-        SpawnAtSlot(lastSlot);
+        if (prefabPool.Count > 0)
+            SpawnAtSlot(lastSlot);
     }
 
     /// Cuando el pasajero activo termina su salida, mandar al siguiente al escaner
