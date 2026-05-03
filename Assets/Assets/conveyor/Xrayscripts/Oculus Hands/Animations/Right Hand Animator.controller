@@ -32,21 +32,13 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Grip
     m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 005ab0ae8aa7f74438a5fa50f7cd50e3, type: 3}
-    m_Threshold: 1
-    m_Position: {x: 1, y: 1}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Grip
-    m_Mirror: 0
   m_BlendParameter: Grip
   m_BlendParameterY: Trigger
   m_MinThreshold: 0
-  m_MaxThreshold: 1
+  m_MaxThreshold: 0.6666667
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
-  m_BlendType: 3
+  m_BlendType: 0
 --- !u!1107 &-2276301845227396631
 AnimatorStateMachine:
   serializedVersion: 6
@@ -119,13 +111,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -7877958355586004021}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: Grip
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
