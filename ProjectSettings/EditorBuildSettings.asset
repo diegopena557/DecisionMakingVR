@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Airportscene/AirportsceneHappy.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: "Assets/Scenes/Men\xFAManos.unity"
+    guid: 1e08c5d90a1275b49b53336528fd9e24
+  - enabled: 1
+    path: Assets/Scenes/TutorialBotones.unity
+    guid: e46de3a6a14f3b540a83a9716e95cdba
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 143d1ec7b824001488d59bafe5976b33, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

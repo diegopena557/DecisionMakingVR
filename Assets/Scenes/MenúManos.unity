@@ -1019,6 +1019,10 @@ PrefabInstance:
       value: Left Hand Model
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_TagString
       value: Hand
       objectReference: {fileID: 0}
@@ -1811,7 +1815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransicionEscena
   escenaTutorial: TutorialBotones
-  escenaExperiencia: SampleScene
+  escenaExperiencia: AirportsceneHappy
 --- !u!1001 &1226168541918208977
 PrefabInstance:
   m_ObjectHideFlags: 0
