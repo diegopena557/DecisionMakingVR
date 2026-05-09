@@ -5784,6 +5784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   conveyorSystem: {fileID: 412120323}
+  tutorialReporter: {fileID: 0}
 --- !u!54 &661658741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6777,7 +6778,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e372362d03c1abe4a88675b8fc640f6b, type: 2}
+  - {fileID: 2100000, guid: b1a14b8ec52c9d14fabd04c963d6f776, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14255,6 +14256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RejectButton
   conveyorSystem: {fileID: 412120323}
+  tutorialReporter: {fileID: 0}
 --- !u!1001 &1967045605
 PrefabInstance:
   m_ObjectHideFlags: 0
