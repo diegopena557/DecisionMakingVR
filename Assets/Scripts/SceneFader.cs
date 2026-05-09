@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(-1000)]
 public class SceneFader : MonoBehaviour
 {
     public static SceneFader Instance { get; private set; }
 
     [Header("Fade")]
     [SerializeField] private CanvasGroup fadeCanvasGroup;
-    [SerializeField] private float fadeDuration = 0.6f;
+    [SerializeField] private float fadeDuration = 1f;
 
     private static bool shouldFadeInFromBlack = false;
     private bool isTransitioning = false;
@@ -23,23 +24,39 @@ public class SceneFader : MonoBehaviour
             return;
         }
 
-        // Si venimos de una transición, arrancamos en negro para hacer fade in
-        if (shouldFadeInFromBlack)
-            fadeCanvasGroup.alpha = 1f;
-        else
-            fadeCanvasGroup.alpha = 0f;
+        fadeCanvasGroup.gameObject.SetActive(true);
 
-        fadeCanvasGroup.blocksRaycasts = false;
-        fadeCanvasGroup.interactable = false;
+        if (shouldFadeInFromBlack)
+        {
+            fadeCanvasGroup.alpha = 1f;
+            fadeCanvasGroup.blocksRaycasts = true;
+            fadeCanvasGroup.interactable = true;
+        }
+        else
+        {
+            fadeCanvasGroup.alpha = 0f;
+            fadeCanvasGroup.blocksRaycasts = false;
+            fadeCanvasGroup.interactable = false;
+        }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         if (shouldFadeInFromBlack)
         {
+            // Forzar que al menos se renderice un frame totalmente negro
+            yield return null;
+            yield return new WaitForEndOfFrame();
+
             shouldFadeInFromBlack = false;
-            StartCoroutine(FadeIn());
+            yield return StartCoroutine(FadeIn());
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public void LoadSceneWithFade(string sceneName)
@@ -76,6 +93,7 @@ public class SceneFader : MonoBehaviour
         if (fadeCanvasGroup == null)
             yield break;
 
+        fadeCanvasGroup.gameObject.SetActive(true);
         fadeCanvasGroup.blocksRaycasts = true;
         fadeCanvasGroup.interactable = true;
 
@@ -97,6 +115,7 @@ public class SceneFader : MonoBehaviour
         if (fadeCanvasGroup == null)
             yield break;
 
+        fadeCanvasGroup.gameObject.SetActive(true);
         fadeCanvasGroup.blocksRaycasts = true;
         fadeCanvasGroup.interactable = true;
 

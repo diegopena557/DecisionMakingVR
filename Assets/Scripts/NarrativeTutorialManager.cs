@@ -274,6 +274,8 @@ public class NarrativeTutorialManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(sceneToLoadOnFinish))
         {
+            EncuestaVASFlow.PrepararAntesExperiencia("SampleScene");
+
             if (SceneFader.Instance != null)
                 SceneFader.Instance.LoadSceneWithFade(sceneToLoadOnFinish);
         }
