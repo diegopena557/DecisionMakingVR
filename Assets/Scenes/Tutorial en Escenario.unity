@@ -1583,26 +1583,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c026a262d1d40cf4599ef4d04dc65854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManagerrr
-  instructionText: {fileID: 1363233254}
-  instructions:
-  - Agarra la maleta
-  - Verifica en el computador los elementos que lleva dentro
-  - "Presiona bot\xF3n verde si pasa el filtro, o rojo si no"
-  stepIndicators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  stepLightIndicators: []
-  audioSource: {fileID: 473238150}
+  subtitleText: {fileID: 0}
+  steps: []
+  voiceSource: {fileID: 0}
+  sfxSource: {fileID: 0}
   stepCompleteClip: {fileID: 8300000, guid: 3e703775003cc294d98ad273316ebca6, type: 3}
   tutorialCompleteClip: {fileID: 8300000, guid: 79cdc7580c748584caa7b25923585c22, type: 3}
+  voiceVolume: 1
   stepVolume: 1
   finalVolume: 1
+  movementBehaviours: []
+  decisionBehaviours: []
+  movementObjects: []
+  decisionObjects: []
   floatingUIRoot: {fileID: 256887869}
   followTarget: {fileID: 1266686216}
   rotateSmooth: 10
   yawOnly: 1
   rotationOffset: {x: 0, y: 0, z: 0}
+  markTutorialCompleted: 1
+  playerPrefsKey: AirportTutorialCompleted
+  sceneToLoadOnFinish: AirportsceneHappy
+  finishDelay: 1.5
 --- !u!1 &484075206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6095,26 +6097,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c026a262d1d40cf4599ef4d04dc65854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManagerrr
-  instructionText: {fileID: 2108321858}
-  instructions:
-  - Agarra la maleta y ponla al inicio de la banda
-  - Verifica en el computador los elementos que lleva dentro
-  - "Presiona bot\xF3n verde si pasa el filtro, o rojo si no"
-  stepIndicators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  stepLightIndicators: []
-  audioSource: {fileID: 1537388318}
+  subtitleText: {fileID: 0}
+  steps: []
+  voiceSource: {fileID: 0}
+  sfxSource: {fileID: 0}
   stepCompleteClip: {fileID: 8300000, guid: 3e703775003cc294d98ad273316ebca6, type: 3}
   tutorialCompleteClip: {fileID: 8300000, guid: 79cdc7580c748584caa7b25923585c22, type: 3}
+  voiceVolume: 1
   stepVolume: 1
   finalVolume: 1
+  movementBehaviours: []
+  decisionBehaviours: []
+  movementObjects: []
+  decisionObjects: []
   floatingUIRoot: {fileID: 1347678725}
   followTarget: {fileID: 1266686216}
   rotateSmooth: 10
   yawOnly: 1
   rotationOffset: {x: 0, y: 0, z: 0}
+  markTutorialCompleted: 1
+  playerPrefsKey: AirportTutorialCompleted
+  sceneToLoadOnFinish: 
+  finishDelay: 1.5
 --- !u!82 &1537388318
 AudioSource:
   m_ObjectHideFlags: 0

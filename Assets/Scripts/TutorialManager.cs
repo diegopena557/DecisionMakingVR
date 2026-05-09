@@ -159,4 +159,10 @@ public class TutorialManager : MonoBehaviour
         Quaternion snapRotation = Quaternion.LookRotation(lookDir.normalized, Vector3.up);
         floatingUIRoot.rotation = snapRotation * Quaternion.Euler(rotationOffset);
     }
+
+    public void IrAEscena(string nombreEscena)
+    {
+        if (SceneFader.Instance != null)
+            SceneFader.Instance.LoadSceneWithFade(nombreEscena);
+    }
 }
