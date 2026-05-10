@@ -8992,9 +8992,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 44fae473a25b4cf4184697e68ebc630a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 38278ec90ef17334499ddb7ceafb07e2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.367
+  m_Volume: 0.359
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -13881,18 +13881,18 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 121040b08abeca740873549918440692, type: 3}
     minInterval: 10
     maxInterval: 20
-    minVolume: 0.7
-    maxVolume: 1
+    minVolume: 0.243
+    maxVolume: 0.587
     minPitch: 0.9
     maxPitch: 1.1
-    playOnStart: 0
+    playOnStart: 1
     startDelay: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 871bf6a0f3934844aaa35b0bcb424ac0, type: 3}
     minInterval: 10
     maxInterval: 20
-    minVolume: 0.294
-    maxVolume: 0.583
+    minVolume: 0.085
+    maxVolume: 0.268
     minPitch: 0.9
     maxPitch: 1.1
     playOnStart: 0
