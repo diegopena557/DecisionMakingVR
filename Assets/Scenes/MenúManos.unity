@@ -415,7 +415,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 228297986}
+    m_Reference: {fileID: 0}
   handAnimator: {fileID: 70461852}
 --- !u!65 &70461854
 BoxCollider:
@@ -465,20 +465,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &228297986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: XRI Right Interaction/Select Value
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_ActionId: 39bbf1ac-21a3-413d-90f6-6dbf6efeaabe
 --- !u!1001 &342460170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,20 +703,6 @@ Transform:
   - {fileID: 1732321514}
   m_Father: {fileID: 1433560502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &652608745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: XRI Left Interaction/Select Value
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_ActionId: e6005f29-e4c1-4f3b-8bf7-3a28bab5ca9c
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1333,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 652608745}
+    m_Reference: {fileID: 0}
   handAnimator: {fileID: 1086146563}
 --- !u!65 &1086146565
 BoxCollider:
@@ -1897,6 +1869,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3846336708363397548, guid: 78850855187af52408130c0d0afa4487, type: 3}
+      propertyPath: escenaExperiencia
+      value: AirportsceneHappy
+      objectReference: {fileID: 0}
     - target: {fileID: 5365677068803906496, guid: 78850855187af52408130c0d0afa4487, type: 3}
       propertyPath: m_Name
       value: GestorEscneas (1)
@@ -2056,7 +2032,7 @@ MonoBehaviour:
   escenaMenu: "Men\xFAManos"
   escenaTutorial: TutorialBotones
   escenaEncuesta: EncuestaVAS
-  escenaExperiencia: SampleScene
+  escenaExperiencia: 
 --- !u!1 &141783192954028485
 GameObject:
   m_ObjectHideFlags: 0
