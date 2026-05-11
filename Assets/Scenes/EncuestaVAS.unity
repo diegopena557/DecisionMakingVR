@@ -377,6 +377,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       insertIndex: -1
       addedObject: {fileID: 70461854}
+    - targetCorrespondingSourceObject: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 70461855}
   m_SourcePrefab: {fileID: 100100000, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
 --- !u!4 &70461850 stripped
 Transform:
@@ -439,6 +442,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17472553, y: 0.09433031, z: 0.24165916}
   m_Center: {x: 0.034392834, y: 0.04473889, z: 0.034472466}
+--- !u!54 &70461855
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70461851}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &228297986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,6 +1154,8 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 10
   glowVisual: {fileID: 1271520377}
+  handTag: Hand
+  activacionCooldown: 0.2
 --- !u!135 &592015740
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1141,7 +1173,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -1694,7 +1726,7 @@ GameObject:
   - component: {fileID: 963139731}
   m_Layer: 0
   m_Name: LeftHand
-  m_TagString: Hand
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1870,7 +1902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_TagString
-      value: Hand
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451457, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2138,6 +2170,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1086146565}
+    - targetCorrespondingSourceObject: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1086146566}
   m_SourcePrefab: {fileID: 100100000, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
 --- !u!4 &1086146561 stripped
 Transform:
@@ -2200,6 +2235,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17406559, y: 0.09679675, z: 0.23617554}
   m_Center: {x: -0.009857655, y: 0.043138146, z: 0.025234222}
+--- !u!54 &1086146566
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086146562}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1123495866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,6 +2985,8 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 5
   glowVisual: {fileID: 2114390927}
+  handTag: Hand
+  activacionCooldown: 0.2
 --- !u!135 &1334481302
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2940,7 +3004,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -3544,6 +3608,8 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 8
   glowVisual: {fileID: 1982557932}
+  handTag: Hand
+  activacionCooldown: 0.2
 --- !u!135 &1897382441
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3561,7 +3627,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -3821,6 +3887,8 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 2
   glowVisual: {fileID: 374924727}
+  handTag: Hand
+  activacionCooldown: 0.2
 --- !u!135 &2075273032
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3838,7 +3906,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -4824,6 +4892,8 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 0
   glowVisual: {fileID: 335005969}
+  handTag: Hand
+  activacionCooldown: 0.2
 --- !u!135 &8966365634655420004
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4841,7 +4911,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}

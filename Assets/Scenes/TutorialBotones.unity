@@ -1915,7 +1915,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   delayBeforeNext: 2
   inspectionTimer: {fileID: 138597698}
-  initialInspectTime: 20
+  initialInspectTime: 35
   timeReductionPerBag: 0
   minimumInspectTime: 5
   passengerQueue: {fileID: 0}
@@ -11861,7 +11861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &2502055059518572691
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12615,7 +12615,7 @@ MonoBehaviour:
   steps:
   - subtitle: "Bienvenido. Est\xE1s en el \xE1rea de revisi\xF3n de equipaje de un
       aeropuerto."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 3fd48da44e11c294da2e41e8ee21f63a, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12635,7 +12635,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Mira a tu alrededor. Frente a ti se encuentra la estaci\xF3n donde
       revisar\xE1s el contenido de las maletas."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: a79d3d221b3cf294183f078bfbd2a55f, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12654,7 +12654,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - subtitle: "Ac\xE9rcate ahora a la banda transportadora resaltada."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 7025b0568ef37ae4d859fdd4a89994c0, type: 3}
     requiresAction: 1
     expectedActionId: 1
     autoAdvanceDelay: 0
@@ -12665,7 +12665,7 @@ MonoBehaviour:
     playRetryOnce: 1
     retryAfterSeconds: 8
     retrySubtitle: "Intenta de nuevo. Avanza hasta la banda transportadora se\xF1alada."
-    retryClip: {fileID: 0}
+    retryClip: {fileID: 8300000, guid: d08825f7f534cb24db42bca1abe8e415, type: 3}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -12674,7 +12674,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "A partir de este momento asumir\xE1s el papel de un operador de revisi\xF3n
       por rayos X."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 8497dcd3428e7e9498a49ad6c99ccd8f, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12694,7 +12694,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: Tu labor es observar el interior de cada maleta, reconocer los objetos
       que transporta y decidir si el pasajero puede continuar o debe ser detenido.
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: b0dad2b57fc700145b56cae3352498d0, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12726,7 +12726,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Debes tomar cada decisi\xF3n antes de que se agote el tiempo. La barra
       que ves en pantalla indica cu\xE1nto tiempo te queda."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 958041f64cab1ec47a4ddda2895db0f0, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12747,7 +12747,7 @@ MonoBehaviour:
   - subtitle: "Si la maleta es segura, deber\xE1s aceptarla con el bot\xF3n verde.
       Si detectas un objeto peligroso o sospechoso, deber\xE1s denegarla con el bot\xF3n
       rojo."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 02b280a183dda754eaa1f92804e88d46, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12767,7 +12767,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Para seleccionar una opci\xF3n, mueve el control derecho de arriba
       hacia abajo y activa ahora el bot\xF3n verde."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: dbe21ca66a2c23345a4afc78f3a7e601, type: 3}
     requiresAction: 1
     expectedActionId: 2
     autoAdvanceDelay: 0
@@ -12779,7 +12779,7 @@ MonoBehaviour:
     retryAfterSeconds: 8
     retrySubtitle: "Intenta de nuevo. Mueve el control derecho de arriba hacia abajo
       para activar el bot\xF3n verde."
-    retryClip: {fileID: 0}
+    retryClip: {fileID: 8300000, guid: 3140a41fd8b9a1d4c85a2fe49352250f, type: 3}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -12788,7 +12788,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Ahora repite la acci\xF3n con el bot\xF3n rojo para denegar una maleta
       sospechosa."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: f32a96273bb2c564cbaba0d34323c45d, type: 3}
     requiresAction: 1
     expectedActionId: 3
     autoAdvanceDelay: 0
@@ -12800,7 +12800,7 @@ MonoBehaviour:
     retryAfterSeconds: 8
     retrySubtitle: "Intenta de nuevo. Mueve el control derecho de arriba hacia abajo
       para activar el bot\xF3n rojo."
-    retryClip: {fileID: 0}
+    retryClip: {fileID: 8300000, guid: 8e01f20706753144ba133c676679a5a5, type: 3}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -12809,7 +12809,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Has completado el tutorial. Ya est\xE1s listo para comenzar la experiencia
       de revisi\xF3n de equipaje."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: ab2ed0c6ad9442643bf76fe3cb9e1a70, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 3
