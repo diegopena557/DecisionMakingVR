@@ -994,6 +994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 321583281}
 --- !u!23 &321583284
 MeshRenderer:
@@ -1118,7 +1120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477477680821523469, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Enabled
@@ -1650,6 +1652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 509261865}
 --- !u!23 &509261868
 MeshRenderer:
@@ -1877,6 +1881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 523992928}
 --- !u!23 &523992931
 MeshRenderer:
@@ -2288,6 +2294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 653035584}
 --- !u!23 &653035587
 MeshRenderer:
@@ -2768,6 +2776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 698354778}
 --- !u!23 &698354781
 MeshRenderer:
@@ -3101,6 +3111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 727006085}
 --- !u!23 &727006088
 MeshRenderer:
@@ -3894,6 +3906,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 921024564}
 --- !u!23 &921024567
 MeshRenderer:
@@ -5047,6 +5061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 1219984757}
 --- !u!23 &1219984760
 MeshRenderer:
@@ -5593,6 +5609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 1484429596}
 --- !u!23 &1484429599
 MeshRenderer:
@@ -6521,6 +6539,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassengerController
   moveSpeed: 1.4
+  animator: {fileID: 0}
+  walkParam: isWalking
   rejectAudio: {fileID: 1773861809}
 --- !u!23 &1773861812
 MeshRenderer:
@@ -7021,6 +7041,7 @@ MonoBehaviour:
   - {fileID: 698354776}
   - {fileID: 921024563}
   randomizeOrder: 0
+  totalPassengers: 10
   queueSlots:
   - {fileID: 967369963}
   - {fileID: 1687023511}
