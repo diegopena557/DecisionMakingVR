@@ -11991,8 +11991,9 @@ MonoBehaviour:
     retryClip: {fileID: 8300000, guid: d08825f7f534cb24db42bca1abe8e415, type: 3}
     playWrongActionFeedback: 1
     wrongActionCooldown: 1.25
-    wrongActionSubtitle: 
-    wrongActionClip: {fileID: 0}
+    wrongActionSubtitle: "Intenta de nuevo. Avanza hasta la banda transportadora
+      se\xF1alada."
+    wrongActionClip: {fileID: 8300000, guid: d08825f7f534cb24db42bca1abe8e415, type: 3}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
