@@ -1,10 +1,10 @@
 using UnityEngine;
 
-// Coloca este componente en el boton ROJO (rechazar / reportar)
+// Coloca este componente en el botón ROJO (rechazar / reportar)
 public class RejectButton : MonoBehaviour
 {
     [SerializeField] private ConveyorController conveyorSystem;
-    [SerializeField] private TutorialDecisionReporter tutorialReporter;
+    [SerializeField] private TutorialDecisionGate tutorialDecisionGate;
 
     private AudioSource audioButton;
 
@@ -18,11 +18,11 @@ public class RejectButton : MonoBehaviour
         if (!other.CompareTag("Hand"))
             return;
 
+        if (tutorialDecisionGate != null && !tutorialDecisionGate.TryActivate())
+            return;
+
         if (conveyorSystem != null)
             conveyorSystem.OnReport();
-
-        if (tutorialReporter != null)
-            tutorialReporter.ReportarAccionTutorial();
 
         if (audioButton != null)
             audioButton.Play();

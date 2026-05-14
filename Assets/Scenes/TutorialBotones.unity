@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8477477680821523469, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Enabled
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412120322}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef63477ba0b76d54ea9ec04d47ac8b75, type: 3}
   m_Name: 
@@ -1802,9 +1802,9 @@ MonoBehaviour:
   moveSpeed: 1.5
   delayBeforeNext: 2
   inspectionTimer: {fileID: 138597698}
-  initialInspectTime: 35
+  initialInspectTime: 65
   timeReductionPerBag: 0
-  minimumInspectTime: 5
+  minimumInspectTime: 65
   passengerQueue: {fileID: 0}
   buttonsAnim: {fileID: 2116859743}
   alarmAudio: {fileID: 1518515649}
@@ -2597,7 +2597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &533625423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3205,8 +3205,9 @@ GameObject:
   - component: {fileID: 661658740}
   - component: {fileID: 661658741}
   - component: {fileID: 661658742}
+  - component: {fileID: 661658743}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Verde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3318,7 +3319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   conveyorSystem: {fileID: 412120323}
-  tutorialReporter: {fileID: 0}
+  tutorialDecisionGate: {fileID: 661658743}
 --- !u!54 &661658741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3443,6 +3444,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &661658743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661658735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a2f60efba737847a20e37e8f641b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialDecisionGate
+  tutorialManager: {fileID: 6607123903727488037}
+  actionId: 2
 --- !u!1 &698354776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,7 +3735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RejectButton
   conveyorSystem: {fileID: 412120323}
-  tutorialReporter: {fileID: 704773185}
+  tutorialDecisionGate: {fileID: 0}
 --- !u!54 &704773187
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5987,13 +6002,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170926576}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.1491, y: 0.64, z: -1.6175}
-  m_LocalScale: {x: 1.4650337, y: 1.0495, z: 1.7287483}
+  m_LocalRotation: {x: -0, y: 0.387283, z: -0, w: 0.9219609}
+  m_LocalPosition: {x: -26.810232, y: 1.57, z: -1.9298782}
+  m_LocalScale: {x: 1.7965708, y: 3.8592036, z: 2.1199641}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2008888240}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45.571, z: 0}
 --- !u!114 &1170926578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6009,6 +6024,10 @@ MonoBehaviour:
   tutorialManager: {fileID: 6607123903727488037}
   actionId: 1
   triggerOnce: 1
+  targetTransform: {fileID: 1181104934}
+  useMainCameraIfTargetMissing: 1
+  verticalOffset: 0
+  onlyWhenExpectedStepIsActive: 1
 --- !u!65 &1170926579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6738,7 +6757,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 1
   m_SortingLayerID: 0
@@ -8208,7 +8227,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -8739,7 +8758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorButton
   conveyorSystem: {fileID: 412120323}
-  tutorialReporter: {fileID: 1779403824}
+  tutorialDecisionGate: {fileID: 0}
 --- !u!54 &1779403826
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9082,8 +9101,8 @@ Transform:
   m_GameObject: {fileID: 1803284745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.93103004, z: -0, w: 0.36494258}
-  m_LocalPosition: {x: -29.230015, y: 2.16, z: -7.7100067}
-  m_LocalScale: {x: 16.58134, y: 6.3527, z: 0.17263004}
+  m_LocalPosition: {x: -29.5602, y: 2.16, z: -7.4027}
+  m_LocalScale: {x: 17.483366, y: 6.3527, z: 0.17263004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1277636526}
@@ -9471,8 +9490,9 @@ GameObject:
   - component: {fileID: 1936675095}
   - component: {fileID: 1936675098}
   - component: {fileID: 1936675099}
+  - component: {fileID: 1936675101}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Rojo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9708,7 +9728,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RejectButton
   conveyorSystem: {fileID: 412120323}
-  tutorialReporter: {fileID: 0}
+  tutorialDecisionGate: {fileID: 1936675101}
+--- !u!114 &1936675101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936675093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a2f60efba737847a20e37e8f641b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialDecisionGate
+  tutorialManager: {fileID: 6607123903727488037}
+  actionId: 3
 --- !u!1 &1998588182
 GameObject:
   m_ObjectHideFlags: 0
@@ -11907,6 +11941,10 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -11927,14 +11965,19 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
     onStepCompleted:
       m_PersistentCalls:
         m_Calls: []
-  - subtitle: "Ac\xE9rcate ahora a la banda transportadora resaltada."
-    voiceClip: {fileID: 8300000, guid: 7025b0568ef37ae4d859fdd4a89994c0, type: 3}
+  - subtitle: "Usa el joystick izquierdo para desplazarte por el espacio. Ac\xE9rcate
+      ahora a la banda transportadora se\xF1alada."
+    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
     requiresAction: 1
     expectedActionId: 1
     autoAdvanceDelay: 0
@@ -11946,6 +11989,10 @@ MonoBehaviour:
     retryAfterSeconds: 8
     retrySubtitle: "Intenta de nuevo. Avanza hasta la banda transportadora se\xF1alada."
     retryClip: {fileID: 8300000, guid: d08825f7f534cb24db42bca1abe8e415, type: 3}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -11966,6 +12013,10 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -11986,6 +12037,10 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls:
@@ -12018,16 +12073,20 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
     onStepCompleted:
       m_PersistentCalls:
         m_Calls: []
-  - subtitle: "Si la maleta es segura, deber\xE1s aceptarla con el bot\xF3n verde.
-      Si detectas un objeto peligroso o sospechoso, deber\xE1s denegarla con el bot\xF3n
-      rojo."
-    voiceClip: {fileID: 8300000, guid: 02b280a183dda754eaa1f92804e88d46, type: 3}
+  - subtitle: "Cuando una maleta segura llegue a la zona de revisi\xF3n, deber\xE1s
+      aceptarla con el bot\xF3n verde. Si detectas un objeto peligroso, deber\xE1s
+      denegarla con el bot\xF3n rojo."
+    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12039,15 +12098,18 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
     onStepCompleted:
       m_PersistentCalls:
         m_Calls: []
-  - subtitle: "Para seleccionar una opci\xF3n, mueve el control derecho de arriba
-      hacia abajo y activa ahora el bot\xF3n verde."
-    voiceClip: {fileID: 8300000, guid: dbe21ca66a2c23345a4afc78f3a7e601, type: 3}
+  - subtitle: "Esta primera maleta es segura. Ac\xE9ptala con el bot\xF3n verde."
+    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
     requiresAction: 1
     expectedActionId: 2
     autoAdvanceDelay: 0
@@ -12055,20 +12117,24 @@ MonoBehaviour:
     lightIndicator: {fileID: 0}
     allowMovement: 0
     allowDecisionInput: 1
-    playRetryOnce: 1
-    retryAfterSeconds: 8
-    retrySubtitle: "Intenta de nuevo. Mueve el control derecho de arriba hacia abajo
-      para activar el bot\xF3n verde."
-    retryClip: {fileID: 8300000, guid: 3140a41fd8b9a1d4c85a2fe49352250f, type: 3}
+    playRetryOnce: 0
+    retryAfterSeconds: 0
+    retrySubtitle: 
+    retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: "Recuerda: esta primera maleta es segura. Debes aceptarla
+      con el bot\xF3n verde."
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
     onStepCompleted:
       m_PersistentCalls:
         m_Calls: []
-  - subtitle: "Ahora repite la acci\xF3n con el bot\xF3n rojo para denegar una maleta
-      sospechosa."
-    voiceClip: {fileID: 8300000, guid: f32a96273bb2c564cbaba0d34323c45d, type: 3}
+  - subtitle: "Esta maleta contiene un objeto peligroso. Deni\xE9gala con el bot\xF3n
+      rojo."
+    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
     requiresAction: 1
     expectedActionId: 3
     autoAdvanceDelay: 0
@@ -12076,11 +12142,15 @@ MonoBehaviour:
     lightIndicator: {fileID: 0}
     allowMovement: 0
     allowDecisionInput: 1
-    playRetryOnce: 1
-    retryAfterSeconds: 8
-    retrySubtitle: "Intenta de nuevo. Mueve el control derecho de arriba hacia abajo
-      para activar el bot\xF3n rojo."
-    retryClip: {fileID: 8300000, guid: 8e01f20706753144ba133c676679a5a5, type: 3}
+    playRetryOnce: 0
+    retryAfterSeconds: 0
+    retrySubtitle: 
+    retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: "Recuerda: esta maleta es peligrosa. Debes denegarla con
+      el bot\xF3n rojo"
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -12101,6 +12171,10 @@ MonoBehaviour:
     retryAfterSeconds: 0
     retrySubtitle: 
     retryClip: {fileID: 0}
+    playWrongActionFeedback: 1
+    wrongActionCooldown: 1.25
+    wrongActionSubtitle: 
+    wrongActionClip: {fileID: 0}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -12554,24 +12628,24 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 836562572}
   - {fileID: 1263646515}
   - {fileID: 832575519}
   - {fileID: 910236038}
   - {fileID: 1433560502}
+  - {fileID: 7602381124037713043}
   - {fileID: 800845188}
   - {fileID: 342460170}
+  - {fileID: 2116859742}
   - {fileID: 434218802}
   - {fileID: 1998588183}
   - {fileID: 1771086688}
   - {fileID: 412120324}
-  - {fileID: 2116859742}
   - {fileID: 1654127731}
   - {fileID: 2038340212}
   - {fileID: 1363042023}
   - {fileID: 138597699}
   - {fileID: 642773558}
-  - {fileID: 2016581173}
   - {fileID: 1076646879}
   - {fileID: 1862939899}
-  - {fileID: 836562572}
-  - {fileID: 7602381124037713043}
+  - {fileID: 2016581173}

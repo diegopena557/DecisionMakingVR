@@ -1,12 +1,10 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-// Coloca este componente en el boton VERDE (dejar pasar)
+// Coloca este componente en el botón VERDE (dejar pasar)
 public class ConveyorButton : MonoBehaviour
 {
     [SerializeField] private ConveyorController conveyorSystem;
-    [SerializeField] private TutorialDecisionReporter tutorialReporter;
+    [SerializeField] private TutorialDecisionGate tutorialDecisionGate;
 
     private AudioSource audioButton;
 
@@ -20,11 +18,11 @@ public class ConveyorButton : MonoBehaviour
         if (!other.CompareTag("Hand"))
             return;
 
+        if (tutorialDecisionGate != null && !tutorialDecisionGate.TryActivate())
+            return;
+
         if (conveyorSystem != null)
             conveyorSystem.OnContinue();
-
-        if (tutorialReporter != null)
-            tutorialReporter.ReportarAccionTutorial();
 
         if (audioButton != null)
             audioButton.Play();

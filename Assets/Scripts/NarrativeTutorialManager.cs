@@ -17,7 +17,7 @@ public class NarrativeTutorialManager : MonoBehaviour
         [Header("Flujo")]
         public bool requiresAction = false;
 
-        [Tooltip("ID que debe reportar otro script llamando CompleteExpectedStep(id).")]
+        [Tooltip("ID que debe reportar otro script llamando TryHandleActionAttempt(id).")]
         public int expectedActionId = -1;
 
         [Tooltip("Si este paso no requiere acción, avanza solo después de este tiempo.")]
@@ -31,13 +31,21 @@ public class NarrativeTutorialManager : MonoBehaviour
         public bool allowMovement = false;
         public bool allowDecisionInput = false;
 
-        [Header("Reintento opcional")]
+        [Header("Reintento opcional por tiempo")]
         public bool playRetryOnce = false;
         public float retryAfterSeconds = 8f;
 
         [TextArea(2, 4)]
         public string retrySubtitle;
         public AudioClip retryClip;
+
+        [Header("Feedback por acción incorrecta")]
+        public bool playWrongActionFeedback = true;
+        public float wrongActionCooldown = 1.25f;
+
+        [TextArea(2, 4)]
+        public string wrongActionSubtitle;
+        public AudioClip wrongActionClip;
 
         [Header("Eventos opcionales")]
         public UnityEvent onStepStarted;
@@ -82,9 +90,12 @@ public class NarrativeTutorialManager : MonoBehaviour
     public int CurrentStep => currentStep;
 
     private Coroutine tutorialRoutine;
+    private Coroutine temporaryFeedbackRoutine;
+
     private bool waitingForAction = false;
     private bool actionCompleted = false;
     private bool retryPlayed = false;
+    private float lastWrongActionTime = -999f;
 
     void Start()
     {
@@ -121,6 +132,7 @@ public class NarrativeTutorialManager : MonoBehaviour
             waitingForAction = false;
             actionCompleted = false;
             retryPlayed = false;
+            lastWrongActionTime = -999f;
 
             NarrativeTutorialStep step = steps[i];
 
@@ -281,6 +293,7 @@ public class NarrativeTutorialManager : MonoBehaviour
         }
     }
 
+    // Sigue funcionando para acciones correctas directas.
     public void CompleteExpectedStep(int reportedActionId)
     {
         if (!waitingForAction)
@@ -299,6 +312,85 @@ public class NarrativeTutorialManager : MonoBehaviour
 
         actionCompleted = true;
         waitingForAction = false;
+    }
+
+    // Nuevo: manejar intento de acción y devolver si se permite continuar con la lógica externa.
+    public bool TryHandleActionAttempt(int reportedActionId)
+    {
+        if (currentStep < 0 || currentStep >= steps.Length)
+            return true;
+
+        NarrativeTutorialStep step = steps[currentStep];
+
+        // Si aún no toca una acción, se bloquea cualquier intento de "saltarse".
+        if (!waitingForAction || !step.requiresAction)
+        {
+            TriggerWrongActionFeedback(step);
+            return false;
+        }
+
+        // Acción correcta: deja avanzar.
+        if (step.expectedActionId == reportedActionId)
+        {
+            actionCompleted = true;
+            waitingForAction = false;
+            return true;
+        }
+
+        // Acción incorrecta: no avanza y recuerda la instrucción.
+        TriggerWrongActionFeedback(step);
+        return false;
+    }
+
+    void TriggerWrongActionFeedback(NarrativeTutorialStep step)
+    {
+        if (!step.playWrongActionFeedback)
+            return;
+
+        if (Time.time - lastWrongActionTime < step.wrongActionCooldown)
+            return;
+
+        lastWrongActionTime = Time.time;
+
+        if (temporaryFeedbackRoutine != null)
+            StopCoroutine(temporaryFeedbackRoutine);
+
+        temporaryFeedbackRoutine = StartCoroutine(ShowTemporaryWrongFeedback(step));
+    }
+
+    IEnumerator ShowTemporaryWrongFeedback(NarrativeTutorialStep step)
+    {
+        string previousSubtitle = step.subtitle;
+
+        if (!string.IsNullOrEmpty(step.wrongActionSubtitle))
+            SetSubtitle(step.wrongActionSubtitle);
+
+        if (voiceSource != null && step.wrongActionClip != null)
+            voiceSource.PlayOneShot(step.wrongActionClip, voiceVolume);
+
+        float waitTime = 1f;
+        if (step.wrongActionClip != null)
+            waitTime = Mathf.Max(0.75f, step.wrongActionClip.length);
+
+        yield return new WaitForSeconds(waitTime);
+
+        if (currentStep >= 0 && currentStep < steps.Length && waitingForAction)
+            SetSubtitle(previousSubtitle);
+
+        temporaryFeedbackRoutine = null;
+    }
+
+    public bool IsWaitingForAction()
+    {
+        return waitingForAction;
+    }
+
+    public int GetExpectedActionId()
+    {
+        if (currentStep < 0 || currentStep >= steps.Length)
+            return -1;
+
+        return steps[currentStep].expectedActionId;
     }
 
     public void RestartCurrentScene()
