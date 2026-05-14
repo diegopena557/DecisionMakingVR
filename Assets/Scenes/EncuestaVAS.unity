@@ -643,7 +643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8477477680821523469, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Enabled
@@ -1066,7 +1066,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.20784312, b: 0.750358, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1154,8 +1154,6 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 10
   glowVisual: {fileID: 1271520377}
-  handTag: Hand
-  activacionCooldown: 0.2
 --- !u!135 &592015740
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1173,7 +1171,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -1505,6 +1503,7 @@ GameObject:
   - component: {fileID: 836562572}
   - component: {fileID: 836562571}
   - component: {fileID: 836562570}
+  - component: {fileID: 836562573}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1519,7 +1518,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836562569}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -1573,6 +1572,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836562573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836562569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab68ce6587aab0146b8dabefbd806791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.XRUIInputModule
+  m_SendPointerHoverToParent: 1
+  m_ClickSpeed: 0.3
+  m_MoveDeadzone: 0.6
+  m_RepeatDelay: 0.5
+  m_RepeatRate: 0.1
+  m_TrackedDeviceDragThresholdMultiplier: 2
+  m_TrackedScrollDeltaMultiplier: 5
+  m_BypassUIToolkitEvents: 0
+  m_ActiveInputMode: 0
+  m_EnableXRInput: 1
+  m_EnableMouseInput: 1
+  m_EnableTouchInput: 1
+  m_EnableGamepadInput: 1
+  m_EnableJoystickInput: 1
+  m_PointAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_NavigateAction: {fileID: 0}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
+  m_EnableBuiltinActionsAsFallback: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
 --- !u!1 &888929572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,7 +2935,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.20784312, b: 0.750358, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2985,8 +3023,6 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 5
   glowVisual: {fileID: 2114390927}
-  handTag: Hand
-  activacionCooldown: 0.2
 --- !u!135 &1334481302
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3004,7 +3040,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -3111,7 +3147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1433560500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3569,6 +3605,63 @@ MonoBehaviour:
   - groupMember: {fileID: 4808866746549998793, guid: b200f6587d118224eba8467281481800, type: 3}
     overrideGroupMembers:
     - {fileID: 7462879561657043759, guid: ad818c36731146e994540a1896ad8f24, type: 3}
+--- !u!1001 &1827889166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6846343954816197115, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_Name
+      value: XR Origin (XR Rig + Manos)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.24529
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459428374842516388, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
 --- !u!1 &1897382435
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,7 +3725,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.20784312, b: 0.750358, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3720,8 +3813,6 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 8
   glowVisual: {fileID: 1982557932}
-  handTag: Hand
-  activacionCooldown: 0.2
 --- !u!135 &1897382441
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3739,7 +3830,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -3973,7 +4064,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.20784312, b: 0.750358, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4061,8 +4152,6 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 2
   glowVisual: {fileID: 374924727}
-  handTag: Hand
-  activacionCooldown: 0.2
 --- !u!135 &2075273032
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4080,7 +4169,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -4278,7 +4367,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.20784312, b: 0.750358, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5066,8 +5155,6 @@ MonoBehaviour:
   encuestaManager: {fileID: 686029796}
   score: 0
   glowVisual: {fileID: 335005969}
-  handTag: Hand
-  activacionCooldown: 0.2
 --- !u!135 &8966365634655420004
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5085,7 +5172,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 9.347261
   m_Center: {x: 1.44, y: 0.89, z: 2.51}
@@ -5097,6 +5184,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 836562572}
   - {fileID: 910236038}
+  - {fileID: 1827889166}
   - {fileID: 1433560502}
   - {fileID: 342460170}
   - {fileID: 686029795}
