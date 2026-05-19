@@ -20,9 +20,9 @@ public class ConveyorController : MonoBehaviour
 
     [Header("Temporizador de inspeccion")]
     [SerializeField] private InspectionTimer inspectionTimer;
-    [SerializeField] private float initialInspectTime = 10f;   // segundos para la primera maleta
-    [SerializeField] private float timeReductionPerBag = 0.5f; // reduccion por cada maleta que pasa
-    [SerializeField] private float minimumInspectTime = 3f;    // tiempo minimo posible
+    [SerializeField] private float initialInspectTime = 10f;
+    [SerializeField] private float timeReductionPerBag = 0.5f;
+    [SerializeField] private float minimumInspectTime = 3f;
 
     [Header("Fila de pasajeros")]
     [SerializeField] private PassengerQueue passengerQueue;
@@ -39,12 +39,39 @@ public class ConveyorController : MonoBehaviour
     [Header("Feedback - Incorrecto")]
     [SerializeField] private UnityEvent onWrongDecision;
 
+    // ---------------------------------------------------------------
+    // NUEVO: controla si el conveyor ya fue activado por la zona
+    // ---------------------------------------------------------------
+    [Header("Zona de trabajo")]
+    [Tooltip("Si esta activo, el conveyor NO arranca en Start(); espera la llamada a StartConveyor() " +
+             "desde WorkZoneTrigger. Desmarcalo solo para pruebas rapidas en el Editor.")]
+    [SerializeField] private bool waitForWorkZone = true;
+
+    private bool conveyorStarted = false;
+    // ---------------------------------------------------------------
+
     private int currentIndex = 0;
     private GameObject currentBag = null;
     private bool waitingForDecision = false;
     private bool isMoving = false;
 
-    void Start() => SpawnNextBag();
+    void Start()
+    {
+        // Solo arranca automaticamente si NO esperamos zona
+        if (!waitForWorkZone)
+            SpawnNextBag();
+    }
+
+    /// <summary>
+    /// Llamado por WorkZoneTrigger cuando el jugador entra a la zona de trabajo.
+    /// Seguro de llamar varias veces (solo ejecuta la primera).
+    /// </summary>
+    public void StartConveyor()
+    {
+        if (conveyorStarted) return;
+        conveyorStarted = true;
+        SpawnNextBag();
+    }
 
     // Calcula el tiempo disponible para esta maleta (se reduce progresivamente)
     private float GetCurrentInspectTime()
@@ -106,7 +133,7 @@ public class ConveyorController : MonoBehaviour
         if (!waitingForDecision || isMoving) return;
         waitingForDecision = false;
         onWrongDecision.Invoke();
-        passengerQueue?.ApproveCurrentPassenger(); // tiempo agotado = pasa sin decision
+        passengerQueue?.ApproveCurrentPassenger();
         StartCoroutine(ExitAndNext());
     }
 
@@ -131,7 +158,6 @@ public class ConveyorController : MonoBehaviour
         isMoving = false;
         waitingForDecision = true;
 
-        // Iniciar timer con el tiempo calculado para esta maleta
         if (inspectionTimer != null)
             inspectionTimer.StartTimer(GetCurrentInspectTime(), OnTimeExpired);
     }
