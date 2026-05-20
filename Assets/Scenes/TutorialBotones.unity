@@ -1838,6 +1838,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  waitForWorkZone: 1
 --- !u!4 &412120324
 Transform:
   m_ObjectHideFlags: 0
@@ -11977,7 +11978,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Usa el joystick izquierdo para desplazarte por el espacio. Ac\xE9rcate
       ahora a la banda transportadora se\xF1alada."
-    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
+    voiceClip: {fileID: 8300000, guid: 0feafe8766b4d1845840a8b1ab73a457, type: 3}
     requiresAction: 1
     expectedActionId: 1
     autoAdvanceDelay: 0
@@ -12087,7 +12088,7 @@ MonoBehaviour:
   - subtitle: "Cuando una maleta segura llegue a la zona de revisi\xF3n, deber\xE1s
       aceptarla con el bot\xF3n verde. Si detectas un objeto peligroso, deber\xE1s
       denegarla con el bot\xF3n rojo."
-    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
+    voiceClip: {fileID: 8300000, guid: 77c79c7d43c77b340b74ae17fd70efb3, type: 3}
     requiresAction: 0
     expectedActionId: 0
     autoAdvanceDelay: 1
@@ -12110,7 +12111,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - subtitle: "Esta primera maleta es segura. Ac\xE9ptala con el bot\xF3n verde."
-    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
+    voiceClip: {fileID: 8300000, guid: 36a072049fcfd5248bc928201f756b3f, type: 3}
     requiresAction: 1
     expectedActionId: 2
     autoAdvanceDelay: 0
@@ -12126,7 +12127,7 @@ MonoBehaviour:
     wrongActionCooldown: 1.25
     wrongActionSubtitle: "Recuerda: esta primera maleta es segura. Debes aceptarla
       con el bot\xF3n verde."
-    wrongActionClip: {fileID: 0}
+    wrongActionClip: {fileID: 8300000, guid: afa2da9353f875f48957b66a3a9f690b, type: 3}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
@@ -12135,7 +12136,7 @@ MonoBehaviour:
         m_Calls: []
   - subtitle: "Esta maleta contiene un objeto peligroso. Deni\xE9gala con el bot\xF3n
       rojo."
-    voiceClip: {fileID: 8300000, guid: f0d0930e0b9ad2f4c8a23067b621b569, type: 3}
+    voiceClip: {fileID: 8300000, guid: eef87ab927e4c18499fd1514aeef3ca5, type: 3}
     requiresAction: 1
     expectedActionId: 3
     autoAdvanceDelay: 0
@@ -12151,7 +12152,7 @@ MonoBehaviour:
     wrongActionCooldown: 1.25
     wrongActionSubtitle: "Recuerda: esta maleta es peligrosa. Debes denegarla con
       el bot\xF3n rojo"
-    wrongActionClip: {fileID: 0}
+    wrongActionClip: {fileID: 8300000, guid: 13c30153281afc248ad7cd48b04a8171, type: 3}
     onStepStarted:
       m_PersistentCalls:
         m_Calls: []
