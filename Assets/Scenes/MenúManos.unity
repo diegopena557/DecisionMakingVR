@@ -531,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477477680821523469, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Enabled
@@ -2248,10 +2248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d271209879f7bdb4e9c95ea3a3c64bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransicionEscena
-  escenaMenu: "Men\xFAManos"
-  escenaTutorial: TutorialBotones
-  escenaEncuesta: EncuestaVAS
-  escenaExperiencia: 
 --- !u!1 &141783192954028485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,6 +3349,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4282894452379252732, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282894452379252732, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282894452379252732, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282894452379252732, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282894452379252732, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802782176698779174, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802782176698779174, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802782176698779174, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802782176698779174, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802782176698779174, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 6846343954816197115, guid: bfdec4c403f29df47ab5797778fa7fa3, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig + Manos)

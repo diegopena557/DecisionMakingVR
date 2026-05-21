@@ -19,8 +19,22 @@ public class EncuestaVASManager : MonoBehaviour
     [SerializeField] private string textoModoAntes = "Encuesta previa a la experiencia";
     [SerializeField] private string textoModoDespues = "Encuesta posterior a la experiencia";
 
-    [Header("Escena de respaldo")]
-    [SerializeField] private string escenaFallback = "SampleScene";
+    // ── Escenas de experiencia ───────────────────────────────────────────────
+    private static readonly string[] ESCENAS_EXPERIENCIA = new string[]
+    {
+        "AirportsceneHappy",
+        "AirportsceneNeutral",
+        "AirportsceneSad",
+        "AirportsceneStressed"
+    };
+
+    private static string ObtenerEscenaExperienciaAleatoria()
+    {
+        int index = UnityEngine.Random.Range(0, ESCENAS_EXPERIENCIA.Length);
+        string escena = ESCENAS_EXPERIENCIA[index];
+        Debug.Log($"[EncuestaVASManager] Escena de experiencia seleccionada: {escena}");
+        return escena;
+    }
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -110,7 +124,7 @@ public class EncuestaVASManager : MonoBehaviour
         if (!string.IsNullOrEmpty(EncuestaVASFlow.SiguienteEscena))
             return EncuestaVASFlow.SiguienteEscena;
 
-        return escenaFallback;
+        return ObtenerEscenaExperienciaAleatoria();
     }
 
     private void GuardarRespuesta()

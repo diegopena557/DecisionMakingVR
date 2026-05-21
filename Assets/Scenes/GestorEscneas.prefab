@@ -151,7 +151,7 @@ MonoBehaviour:
   escenaMenu: "Men\xFAManos"
   escenaTutorial: TutorialBotones
   escenaEncuesta: EncuestaVAS
-  escenaExperiencia: SampleScene
+  escenaExperiencia: AirportsceneHappy
 --- !u!1 &5636221394795751119
 GameObject:
   m_ObjectHideFlags: 0

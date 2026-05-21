@@ -83,8 +83,26 @@ public class NarrativeTutorialManager : MonoBehaviour
     [Header("Finalización")]
     public bool markTutorialCompleted = true;
     public string playerPrefsKey = "AirportTutorialCompleted";
-    public string sceneToLoadOnFinish = "";
     public float finishDelay = 1.5f;
+
+    // ── Escenas de experiencia fijas ─────────────────────────────────────────
+    private static readonly string[] ESCENAS_EXPERIENCIA = new string[]
+    {
+        "AirportsceneHappy",
+        "AirportsceneNeutral",
+        "AirportsceneSad",
+        "AirportsceneStressed"
+    };
+
+    private const string ESCENA_ENCUESTA = "EncuestaVAS";
+
+    private static string ObtenerEscenaExperienciaAleatoria()
+    {
+        int index = UnityEngine.Random.Range(0, ESCENAS_EXPERIENCIA.Length);
+        string escena = ESCENAS_EXPERIENCIA[index];
+        Debug.Log($"[NarrativeTutorialManager] Escena de experiencia seleccionada: {escena}");
+        return escena;
+    }
 
     private int currentStep = -1;
     public int CurrentStep => currentStep;
@@ -284,13 +302,13 @@ public class NarrativeTutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(finishDelay);
 
-        if (!string.IsNullOrEmpty(sceneToLoadOnFinish))
-        {
-            EncuestaVASFlow.PrepararAntesExperiencia("SampleScene");
+        string escenaExperiencia = ObtenerEscenaExperienciaAleatoria();
+        EncuestaVASFlow.PrepararAntesExperiencia(escenaExperiencia);
 
-            if (SceneFader.Instance != null)
-                SceneFader.Instance.LoadSceneWithFade(sceneToLoadOnFinish);
-        }
+        if (SceneFader.Instance != null)
+            SceneFader.Instance.LoadSceneWithFade(ESCENA_ENCUESTA);
+        else
+            SceneManager.LoadScene(ESCENA_ENCUESTA);
     }
 
     // Sigue funcionando para acciones correctas directas.

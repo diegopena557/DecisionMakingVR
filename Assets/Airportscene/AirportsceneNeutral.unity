@@ -3171,13 +3171,73 @@ PrefabInstance:
     - {fileID: -5274863086572942910, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
     - {fileID: 93015299565185828, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8908214061578574983, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 330343204}
+    - targetCorrespondingSourceObject: {fileID: -6333246289975115795, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 330343206}
   m_SourcePrefab: {fileID: 100100000, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
 --- !u!4 &330343202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
   m_PrefabInstance: {fileID: 330343201}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &330343203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8908214061578574983, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
+  m_PrefabInstance: {fileID: 330343201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &330343204
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330343203}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4504540089254973559, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
+--- !u!1 &330343205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6333246289975115795, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
+  m_PrefabInstance: {fileID: 330343201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &330343206
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330343205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1327085191070332640, guid: 4c1336c96b04bca40b0ff1a795f59dc3, type: 3}
 --- !u!1001 &342460170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3244,7 +3304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477477680821523469, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Enabled
@@ -5973,7 +6033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   conveyorSystem: {fileID: 412120323}
-  tutorialReporter: {fileID: 0}
+  tutorialDecisionGate: {fileID: 0}
 --- !u!54 &661658741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14899,7 +14959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433560499}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -4.763, y: 0, z: -26.612}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
@@ -14907,7 +14967,7 @@ Transform:
   - {fileID: 484075207}
   - {fileID: 1495756406}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!143 &1433560503
 CharacterController:
   m_ObjectHideFlags: 0
@@ -18268,7 +18328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RejectButton
   conveyorSystem: {fileID: 412120323}
-  tutorialReporter: {fileID: 0}
+  tutorialDecisionGate: {fileID: 0}
 --- !u!1001 &1967124566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19453,7 +19513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit.Samples.StarterAssets::UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.DynamicMoveProvider
   m_Mediator: {fileID: 1495756407}
   m_TransformationPriority: 0
-  m_MoveSpeed: 1
+  m_MoveSpeed: 2
   m_InAirControlModifier: 0.5
   m_EnableStrafe: 1
   m_EnableFly: 0

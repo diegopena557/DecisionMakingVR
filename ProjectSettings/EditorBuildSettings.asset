@@ -17,6 +17,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Airportscene/AirportsceneHappy.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Airportscene/AirportsceneNeutral.unity
+    guid: 5bab32476f51b274daccd95a4fb155b8
+  - enabled: 1
+    path: Assets/Airportscene/AirportsceneSad.unity
+    guid: a69c3cbe7d0f21a4099d64e9512251c3
+  - enabled: 1
+    path: Assets/Airportscene/AirportsceneStressed.unity
+    guid: 4bb2aa1b06d506b43866b08baf01cb58
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 55daccc09a3b69647bbab145b54a3ab3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 143d1ec7b824001488d59bafe5976b33, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

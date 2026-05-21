@@ -44,7 +44,6 @@ public class SceneFader : MonoBehaviour
     {
         if (shouldFadeInFromBlack)
         {
-            // Forzar que al menos se renderice un frame totalmente negro
             yield return null;
             yield return new WaitForEndOfFrame();
 
