@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ConveyorController : MonoBehaviour
 {
@@ -48,6 +49,21 @@ public class ConveyorController : MonoBehaviour
     [SerializeField] private bool waitForWorkZone = true;
 
     private bool conveyorStarted = false;
+    // ---------------------------------------------------------------
+
+    // ---------------------------------------------------------------
+    // NUEVO: finalizacion de turno (sonido + panel en pantalla + cambio de escena)
+    // ---------------------------------------------------------------
+    [Header("Finalizacion de turno")]
+    [SerializeField] private AudioSource turnCompleteAudio;
+    [Tooltip("GameObject del panel en la pantalla que se activa al terminar.")]
+    [SerializeField] private GameObject completionPanel;
+    [Tooltip("Segundos entre el sonido y que aparezca el panel.")]
+    [SerializeField] private float delayBeforePanel = 2f;
+    [Tooltip("Nombre exacto de la escena a cargar (debe estar en Build Settings).")]
+    [SerializeField] private string nextSceneName;
+    [Tooltip("Segundos que el panel permanece visible antes de cargar la siguiente escena.")]
+    [SerializeField] private float delayBeforeSceneLoad = 3f;
     // ---------------------------------------------------------------
 
     private int currentIndex = 0;
@@ -143,6 +159,7 @@ public class ConveyorController : MonoBehaviour
         if (currentIndex >= bagPrefabs.Count)
         {
             Debug.Log("Todas las maletas procesadas.");
+            StartCoroutine(HandleTurnCompleted());
             return;
         }
 
@@ -210,5 +227,26 @@ public class ConveyorController : MonoBehaviour
 
         if (bag != null)
             bag.transform.position = target;
+    }
+
+    // ---------------------------------------------------------------
+    // NUEVO: secuencia de fin de turno
+    // ---------------------------------------------------------------
+    private IEnumerator HandleTurnCompleted()
+    {
+        if (turnCompleteAudio != null)
+            turnCompleteAudio.Play();
+
+        yield return new WaitForSeconds(delayBeforePanel);
+
+        if (completionPanel != null)
+            completionPanel.SetActive(true);
+
+        yield return new WaitForSeconds(delayBeforeSceneLoad);
+
+        if (!string.IsNullOrEmpty(nextSceneName))
+            SceneManager.LoadScene(nextSceneName);
+        else
+            Debug.LogWarning("ConveyorController: no se asigno 'nextSceneName', no se cargara ninguna escena.");
     }
 }
